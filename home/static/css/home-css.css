@@ -71,7 +71,7 @@ h1 {
 
 .split.left {
   left:0;
-  background: url('../media_new/pexels-liza-summer-6348104.jpg') center center no-repeat;
+  background: url('../imgs/home1.jpg') center center no-repeat;
   background-size: cover;
 }
 
@@ -85,7 +85,7 @@ h1 {
 
 .split.right {
   right:0;
-  background: url('../media_new/pexels-karolina-grabowska-4506274.jpg') center center no-repeat;
+  background: url('../imgs/home2.jpg') center center no-repeat;
   background-size: cover;
 }
 
