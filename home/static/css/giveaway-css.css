@@ -73,14 +73,14 @@ h1 {
 
 .split.left {
   left:0;
-  background: url('../giveaway_media/pexels-cottonbro-4676401.jpg') center center no-repeat;
+  background: url('../imgs/giveaway_food.jpg') center center no-repeat;
   background-size: cover;
   opacity: 0.6;
 }
 
 .split.middle {
   left:485;
-  background: url('../giveaway_media/pexels-emre-can-acer-2079249.jpg') center center no-repeat;
+  background: url('../imgs/giveaway_clothes.jpg') center center no-repeat;
   background-size: cover;
   opacity: 0.6;
 }
@@ -88,7 +88,7 @@ h1 {
 
 .split.right {
   right:0;
-  background: url('../giveaway_media/pexels-rachel-claire-5490220.jpg') center center no-repeat;
+  background: url('../imgs/giveaway_household.jpg') center center no-repeat;
   background-size: cover;
   opacity: 0.6;
 }

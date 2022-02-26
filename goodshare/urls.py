@@ -23,4 +23,5 @@ urlpatterns = [
     path('', loginApp.userlogin, name='login'),
     path('home/', homeApp.home, name='home_div'),
     path('give_away/', homeApp.giveAway, name='give_away'),
+    path('pickup/', homeApp.pickUp, name='pickup'),
 ]

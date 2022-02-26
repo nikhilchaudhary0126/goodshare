@@ -7,3 +7,7 @@ def home(request):
 
 def giveAway(request):
     return render(request, 'giveAway.html')
+
+
+def pickUp(request):
+    return render(request, 'pickup.html')
