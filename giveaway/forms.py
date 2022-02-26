@@ -54,7 +54,7 @@ class ClothesForm(forms.ModelForm):
 
     class Meta:
         model = Clothes
-        fields = ('size', 'gender', 'condition', 'address', 'contactno', 'description','pickupdate')
+        fields = ('size', 'gender', 'condition', 'address', 'city', 'state', 'contactno', 'description','pickupdate')
 
         # create a widegets dictionary
         widget = {
@@ -62,6 +62,8 @@ class ClothesForm(forms.ModelForm):
             'gender': forms.Form(forms.ChoiceField(choices=GENDER_CHOICES)),
             'condition': forms.Form(forms.ChoiceField(choices=CONDITION_CHOICES)),
             'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'state': forms.TextInput(attrs={'class': 'form-control'}),
             'contactno': forms.TextInput(attrs={'class': 'form-control'}),
             'pickupdate': forms.DateField(widget=forms.SelectDateWidget()),
         }

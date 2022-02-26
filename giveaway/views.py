@@ -8,8 +8,8 @@ import requests
 import json
 from datetime import datetime
 from django.shortcuts import render
-from giveaway.models import Food
-from giveaway.forms import FoodForm
+from giveaway.models import Food, Clothes
+from giveaway.forms import FoodForm, ClothesForm
 from django.contrib import messages
 from goodshare.settings import API_KEY, MAP_URL
 
@@ -69,7 +69,49 @@ def getLongLat(address: str) -> (int, int):
 
 
 def clothesPostRequest(request):
-    pass
+    if request.method == "POST":
+        description = request.POST['description']
+        size = request.POST['size']
+        gender = request.POST['gender']
+        condition = request.POST['condition']
+        contactno = request.POST['contactno']
+        address = request.POST['address']
+        city = request.POST['city']
+        state = request.POST['state']
+        pickupDate = request.POST['pickupdate']
+        form = FoodForm(request.POST, request.FILES)
+        if form.is_valid():
+
+            if pickupDate and datetime.strptime(pickupDate, "%Y-%m-%d") > datetime.now():
+                if size and gender and city and state and address and contactno and condition:
+                    combinedAddress = address + "," + city + "," + state
+                    data = getLongLat(combinedAddress)
+                    longitude = data['results'][0]['locations'][0]['displayLatLng']['lng']
+                    latitude = data['results'][0]['locations'][0]['displayLatLng']['lat']
+
+                    f = Clothes(size=size, gender=gender, condition=condition, address=address, city=city, state=state,
+                                latitude=latitude, longitude=longitude, pickupdate=pickupDate, contactno=contactno,
+                                description=description)
+                    f.save()
+                    postid = f.id
+
+                    files = request.FILES.getlist('file')
+                    fs = FileSystemStorage()
+                    for file in files:
+                        path = os.path.join("clothpost", str(postid), file.name)
+                        fs.save(path, file)
+                    mappath = os.path.join("media", "clothpost", str(postid))
+                    curpath = os.getcwd()
+                    os.chdir(mappath)
+                    urlretrieve(data['results'][0]['locations'][0]['mapUrl'], "map.jpg")
+                    os.chdir(curpath)
+                    return redirect('home_div')
+                else:
+                    messages.error(request, "Clothes Post failed! Please enter all details.")
+            else:
+                messages.error(request, "Clothes Post failed! Please select a future expiry date")
+
+    return render(request, 'clothPost.html', {"form": ClothesForm})
 
 
 def itemsPostRequest(request):

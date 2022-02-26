@@ -18,6 +18,8 @@ class Clothes(models.Model):
     gender = models.CharField(max_length=20)
     condition = models.CharField(max_length=5)
     address = models.CharField(max_length=30)
+    city = models.CharField(max_length=30)
+    state = models.CharField(max_length=30)
     latitude = models.FloatField()
     longitude = models.FloatField()
     contactno = models.IntegerField()
