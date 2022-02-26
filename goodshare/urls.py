@@ -21,6 +21,7 @@ from home import views as homeApp
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', loginApp.userlogin, name='login'),
+    path('login', loginApp.userlogin, name='login'),
     path('register/', loginApp.register_request),
     path('home/', homeApp.home, name='home_div'),
     path('give_away/', homeApp.giveAway, name='give_away'),
