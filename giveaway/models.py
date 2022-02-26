@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Food(models.Model):
     expiry = models.DateTimeField()
     address = models.CharField(max_length=30)
