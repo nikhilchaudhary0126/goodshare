@@ -14,3 +14,6 @@ def pickUp(request):
 
 def food(request):
     return render(request, 'food.html')
+
+def populate(request):
+    return render(request, 'populate.html')
