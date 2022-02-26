@@ -1,5 +1,5 @@
 from django import forms
-from giveaway.models import Food
+from giveaway.models import Food, Clothes
 
 TYPE_CHOICES = [
     ('Grocery', 'Grocery'),
@@ -25,7 +25,12 @@ GENDER_CHOICES = [
     ('Gender Neutral', 'Gender Neutral'),
     ('Any', 'Any')
 ]
-
+CONDITION_CHOICES = [
+    ('Poor', 'Poor'),
+    ('Fair', 'Fair'),
+    ('Good', 'Good'),
+    ('New', 'New')
+]
 
 class FoodForm(forms.ModelForm):
     class Meta:
@@ -45,19 +50,18 @@ class FoodForm(forms.ModelForm):
             'description': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
-class FurnitureForm(forms.ModelForm):
+class ClothesForm(forms.ModelForm):
+
     class Meta:
-        model = Furniture
-        fields = ('name', 'quantity', 'type', 'condition', 'description', 'contactno', 'latitude', 'longitude')
+        model = Clothes
+        fields = ('size', 'gender', 'condition', 'address', 'contactno', 'description','pickupdate')
 
         # create a widegets dictionary
         widget = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'quantity': forms.TextInput(attrs={'class': 'form-control'}),
-            'type': forms.Form(forms.ChoiceField(choices=TYPE_CHOICES)),
-            'condition': forms.DateField(widget=forms.SelectDateWidget()),
+            'size': forms.Form(forms.ChoiceField(choices=SIZE_CHOICES)),
+            'gender': forms.Form(forms.ChoiceField(choices=GENDER_CHOICES)),
+            'condition': forms.Form(forms.ChoiceField(choices=CONDITION_CHOICES)),
             'description': forms.TextInput(attrs={'class': 'form-control'}),
             'contactno': forms.TextInput(attrs={'class': 'form-control'}),
-            'latitude': forms.TextInput(attrs={'class': 'form-control'}),
-            'longitude': forms.TextInput(attrs={'class': 'form-control'}),
+            'pickupdate': forms.DateField(widget=forms.SelectDateWidget()),
         }

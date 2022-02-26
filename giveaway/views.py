@@ -34,12 +34,11 @@ def foodPostRequest(request):
                     longitude = data['results'][0]['locations'][0]['displayLatLng']['lng']
                     latitude = data['results'][0]['locations'][0]['displayLatLng']['lat']
 
-                    f = Food(address=address, city=city, state=state, type=foodtype, latitude=latitude, longitude=longitude,
-                             expiry=expiry, quantity=quantity, contactno=contactno, description=description)
+                    f = Food(address=address, city=city, state=state, type=foodtype, latitude=latitude,
+                             longitude=longitude, expiry=expiry, quantity=quantity, contactno=contactno,
+                             description=description)
                     f.save()
-                    print(f)
                     postid = f.id
-                    print(postid)
 
                     files = request.FILES.getlist('file')
                     fs = FileSystemStorage()
@@ -67,3 +66,11 @@ def getLongLat(address: str) -> (int, int):
     response = requests.get(MAP_URL, params=parameters)
     data = json.loads(response.text)
     return data
+
+
+def clothesPostRequest(request):
+    pass
+
+
+def itemsPostRequest(request):
+    pass
