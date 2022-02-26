@@ -29,4 +29,5 @@ urlpatterns = [
     path('home/', homeApp.home, name='home_div'),
     path('give_away/', homeApp.giveAway, name='give_away'),
     path('pickup/', homeApp.pickUp, name='pickup'),
+    path('food_pickup/', homeApp.food, name='food'),
 ]
