@@ -1,108 +1,44 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial;
-}
-
-/* The grid: Four equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 25%;
-  padding: 10px;
-}
-
-/* Style the images inside the grid */
-.column img {
-  opacity: 0.8; 
-  cursor: pointer; 
-}
-
-.column img:hover {
-  opacity: 1;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* The expanding image container */
-.container {
-  position: relative;
-  display: none;
-}
-
-/* Expanding image text */
-#imgtext {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  color: white;
-  font-size: 20px;
-}
-
-/* Closable button inside the expanded image */
-.closebtn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  color: white;
-  font-size: 35px;
-  cursor: pointer;
-}
-</style>
-<title>Title</title>
-<link rel="stylesheet"  href="{%  static  'css/populate-css.css'  %}">
+    <meta charset="UTF-8">
+    <title>Goodshare Home</title>
+    <link rel="stylesheet"  href="{%  static  'css/populate-css.css'  %}">
 </head>
 <body>
-
-<div style="text-align:center">
-  <h2>Images Gallery</h2>
-  <p>Click on the images below for more detail:</p>
-</div>
-
-<!-- The four columns -->
-<div class="row">
-  <div class="column">
-    <img src="{%  static  'imgs/oranges.jpeg'  %}" alt="Nature" style="width:100%" onclick="myFunction(this);">
+  <main class="page-content">
+    <div class="card">
+        <div class="content">
+            <h2 class="title">Mountain View</h2>
+            <p class="copy">Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p><button class="btn">Book Now</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="content">
+            <h2 class="title">To The Beach</h2>
+            <p class="copy">Plan your next beach trip with these fabulous destinations</p><button class="btn">Book Now</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="content">
+            <h2 class="title">Desert Destinations</h2>
+            <p class="copy">It's the desert you've always dreamed of</p><button class="btn">Book Now</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="content">
+            <h2 class="title">Explore The Galaxy</h2>
+            <p class="copy">Seriously, straight up, just blast off into outer space today</p><button class="btn">Book Now</button>
+        </div>
+    </div>
+    <div class="card">
+      <div class="content">
+          <h2 class="title">Explore The Galaxy</h2>
+          <p class="copy">Seriously, straight up, just blast off into outer space today</p><button class="btn">Book Now</button>
+      </div>
   </div>
-  <div class="column">
-    <img src="{%  static  'imgs/apple.jpeg'  %}" alt="Snow" style="width:100%" onclick="myFunction(this);">
-  </div>
-  <div class="column">
-    <img src="{%  static  'imgs/kiwi.jpeg'  %}" alt="Mountains" style="width:100%" onclick="myFunction(this);">
-  </div>
-  <div class="column">
-    <img src="{%  static  'imgs/strawberry.jpeg'  %}" alt="Lights" style="width:100%" onclick="myFunction(this);">
-  </div>
-</div>
-
-<div class="container">
-  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
-  <img id="expandedImg" style="width:100%">
-  <div id="imgtext"></div>
-</div>
-
-<script>
-function myFunction(imgs) {
-    var expandImg = document.getElementById("expandedImg");
-    var imgText = document.getElementById("imgtext");
-    expandImg.src = imgs.src;
-    imgText.innerHTML = imgs.alt;
-    expandImg.parentElement.style.display = "block";
-}
-</script>
-
+</main>
+{% load static %}
+<script></script>
 </body>
 </html>
