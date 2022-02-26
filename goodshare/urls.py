@@ -31,3 +31,5 @@ urlpatterns = [
     path('pickup/', homeApp.pickUp, name='pickup'),
     path('food_pickup/', homeApp.food, name='food'),
 ]
+
+

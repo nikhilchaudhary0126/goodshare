@@ -1,7 +1,7 @@
 /* Dropdown Button */
 .dropbtn {
   background-color: #04AA6D;
-  color: white;
+  color: grey;
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -31,4 +31,19 @@
   display: block;
 }
 
+#wrapper, img{
+    width:100%;
+    height: 100%;
+}
+
+.container{
+    height: 100vh;
+    width: 100%;
+    background-image: url("https://cc-prod.scene7.com/is/image/CCProdAuthor/Black-background_P1_900x420?$pjpeg$&jpegSize=200&wid=900");
+    background-size: cover;
+    padding-left: 5%
+    padding-right: 5%
+    box-sizing: border-box;
+    position: relative;
+    }
 
