@@ -11,3 +11,15 @@ class Food(models.Model):
     quantity = models.CharField(max_length=5)
     contactno = models.IntegerField()
     description = models.CharField(max_length=250)
+
+class Clothes(models.Model):
+    size = models.CharField(max_length=10)
+    condition = models.CharField(max_length=20)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    name = models.CharField(max_length=100)
+    quantity = models.CharField(max_length=5)
+    contactno = models.IntegerField()
+    description = models.CharField(max_length=250)
+
+class Items(models.Model):
