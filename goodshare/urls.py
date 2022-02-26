@@ -17,7 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from login import views as loginApp
 
+from search import views as searchApp
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', loginApp.userlogin, name='login')
+    path('', loginApp.userlogin, name='login'),
+    path('search/', searchApp.test, name='search')
 ]
