@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Food(models.Model):
     expiry = models.DateTimeField()
     address = models.CharField(max_length=30)
@@ -23,3 +24,4 @@ class Clothes(models.Model):
     description = models.CharField(max_length=250)
 
 class Items(models.Model):
+    pass

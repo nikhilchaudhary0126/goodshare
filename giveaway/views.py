@@ -11,7 +11,7 @@ from django.shortcuts import render
 from giveaway.models import Food
 from giveaway.forms import FoodForm
 from django.contrib import messages
-from goodshare.settings import API_KEY, MAP_URL, getPostId, incrementPostId
+from goodshare.settings import API_KEY, MAP_URL
 
 
 def foodPostRequest(request):
@@ -26,36 +26,36 @@ def foodPostRequest(request):
         description = request.POST['description']
         form = FoodForm(request.POST, request.FILES)
         if form.is_valid():
-            files = request.FILES.getlist('file')
-            fs = FileSystemStorage()
-            for file in files:
-                postid = "post" + str(getPostId())
-                path = os.path.join("foodpost", postid, file.name)
-                fs.save(path, file)
-            mappath = os.path.join("media", "foodpost", postid)
-            incrementPostId()
 
-        if expiry and datetime.strptime(expiry, "%Y-%m-%d") > datetime.now():
-            if foodtype and address and city and state and quantity and contactno:
-                combinedAddress = address + "," + city + "," + state
-                data = getLongLat(combinedAddress)
-                longitude = data['results'][0]['locations'][0]['displayLatLng']['lng']
-                latitude = data['results'][0]['locations'][0]['displayLatLng']['lat']
+            if expiry and datetime.strptime(expiry, "%Y-%m-%d") > datetime.now():
+                if foodtype and address and city and state and quantity and contactno:
+                    combinedAddress = address + "," + city + "," + state
+                    data = getLongLat(combinedAddress)
+                    longitude = data['results'][0]['locations'][0]['displayLatLng']['lng']
+                    latitude = data['results'][0]['locations'][0]['displayLatLng']['lat']
 
-                curpath = os.getcwd()
-                os.chdir(mappath)
-                urlretrieve(data['results'][0]['locations'][0]['mapUrl'], "map.jpg")
-                os.chdir(curpath)
+                    f = Food(address=address, city=city, state=state, type=foodtype, latitude=latitude, longitude=longitude,
+                             expiry=expiry, quantity=quantity, contactno=contactno, description=description)
+                    f.save()
+                    print(f)
+                    postid = f.id
+                    print(postid)
 
-                f = Food(address=address, city=city, state=state, type=foodtype, latitude=latitude, longitude=longitude,
-                         expiry=expiry, quantity=quantity, contactno=contactno, description=description)
-                f.save()
-                return redirect('home_div')
+                    files = request.FILES.getlist('file')
+                    fs = FileSystemStorage()
+                    for file in files:
+                        path = os.path.join("foodpost", str(postid), file.name)
+                        fs.save(path, file)
+                    mappath = os.path.join("media", "foodpost", str(postid))
+                    curpath = os.getcwd()
+                    os.chdir(mappath)
+                    urlretrieve(data['results'][0]['locations'][0]['mapUrl'], "map.jpg")
+                    os.chdir(curpath)
+                    return redirect('home_div')
+                else:
+                    messages.error(request, "Food Post failed! Please enter all details.")
             else:
-                messages.error(request, "Food Post failed! Please enter all details.")
-        else:
-            messages.error(request, "Food Post failed! Please select a future expiry date")
-
+                messages.error(request, "Food Post failed! Please select a future expiry date")
     return render(request, 'foodPost.html', {"form": FoodForm})
 
 
