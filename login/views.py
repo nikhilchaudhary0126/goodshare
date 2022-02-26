@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+
 # Create your views here.
 def userlogin(request):
     if request.method == 'POST':
@@ -20,6 +21,7 @@ def userlogin(request):
     form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
+
 def register_request(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -29,15 +31,18 @@ def register_request(request):
         password2 = request.POST['password2']
 
         if username and name and email and password1 and password2:
-            if password1 == password2:
-                user = User.objects.create_user(username=username, password=password1, email=email)
-                user.first_name = name
-                user.save()
-                messages.success(request, "User created. Please login.")
-                return redirect('userlogin')
-            else:
-                messages.error(request, "Passwords do not match.")
-                return render(request, 'register.html', {"form": UserCreationForm()})
+            try:
+                if password1 == password2:
+                    user = User.objects.create_user(username=username, password=password1, email=email)
+                    user.first_name = name
+                    user.save()
+                    messages.success(request, "User created. Please login.")
+                    return redirect('')
+                else:
+                    messages.error(request, "Passwords do not match.")
+                    return render(request, 'register.html', {"form": UserCreationForm()})
+            except:
+                return redirect('login')
         else:
             messages.error(request, "Registration failed! Please try again.")
     return render(request, 'register.html', {"form": UserCreationForm()})
