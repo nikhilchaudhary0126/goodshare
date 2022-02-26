@@ -12,6 +12,7 @@
     <link rel="stylesheet"  href="{%  static  'css/food-css.css'  %}">
 </head>
 
+
 <body>
     <div class = "container">
         <div class = "navbar">
@@ -30,6 +31,7 @@
 </h>
 
 <p>
+
 <center>
 <label for="food-names">Food Category</label>
 <select name="food-names" id="food-namess">
@@ -46,10 +48,17 @@
 &nbsp;&nbsp;&nbsp;&nbsp;
     Location
         <input type="text" name="address" size="25" maxlength="100">
-
 </center>
 
-</body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<form class="example" action="action_page.php">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
+
+
+<!--</body>-->
 <!--</p>-->
 
 <!--<p>-->
@@ -67,6 +76,5 @@
 {% load static %}
 <script src="{% static '/js/food-js.js' %}"></script>
 
-</body>
 
 </html>

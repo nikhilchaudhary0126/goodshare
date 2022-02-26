@@ -47,3 +47,12 @@
     position: relative;
     }
 
+/* Style the submit button */
+form.example button {
+  float: right;
+  padding: 5px;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
