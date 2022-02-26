@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from login import views as loginApp
+from home import views as homeApp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', loginApp.userlogin, name='login'),
     path('register/', loginApp.register_request),
+    path('home/', homeApp.home, name='home_div'),
+    path('give_away/', homeApp.giveAway, name='give_away'),
+    path('pickup/', homeApp.pickUp, name='pickup'),
 ]

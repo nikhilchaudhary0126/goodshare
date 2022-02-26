@@ -1,0 +1,25 @@
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+     <link rel="stylesheet"  href="{%  static  'css/pickup-css.css'  %}">
+</head>
+<body>
+<div class="container">
+  <div class="split left">
+    <h1>FOOD</h1>
+    <a href="/food_pickup/" class="button">Pick Up</a>
+  </div>
+  <div class="split middle">
+    <h1>CLOTHES</h1>
+    <a href="#" class="button">Pick Up</a>
+  </div>
+  <div class="split right">
+    <h1>HOUSEHOLD ITEMS</h1>
+    <a href="#" class="button">Pick Up</a>
+  </div>
+</div>
+{% load static %}
+<script src="{% static '/js/pickup-js.js' %}"></script>
+</body>
+</html>
