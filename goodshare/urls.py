@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from login import views as loginApp
 from home import views as homeApp
+from giveaway import views as giveawayApp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', loginApp.userlogin, name='login'),
     path('login', loginApp.userlogin, name='login'),
+    path('give_away/food_post/', giveawayApp.foodPostRequest, name='food_post'),
     path('register/', loginApp.register_request),
     path('home/', homeApp.home, name='home_div'),
     path('give_away/', homeApp.giveAway, name='give_away'),

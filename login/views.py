@@ -37,7 +37,7 @@ def register_request(request):
                     user.first_name = name
                     user.save()
                     messages.success(request, "User created. Please login.")
-                    return redirect('')
+                    return redirect('login')
                 else:
                     messages.error(request, "Passwords do not match.")
                     return render(request, 'register.html', {"form": UserCreationForm()})
