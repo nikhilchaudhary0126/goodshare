@@ -11,3 +11,6 @@ def giveAway(request):
 
 def pickUp(request):
     return render(request, 'pickup.html')
+
+def food(request):
+    return render(request, 'food.html')
