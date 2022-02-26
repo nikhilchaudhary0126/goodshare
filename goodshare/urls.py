@@ -22,5 +22,6 @@ from search import views as searchApp
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', loginApp.userlogin, name='login'),
-    path('search/', searchApp.test, name='search')
+    path('search/', searchApp.test, name='search'),
+    path('register/', loginApp.register_request),
 ]

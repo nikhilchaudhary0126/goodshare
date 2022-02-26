@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/js/bootstrap.min.js' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'animate/animate.css' %}"/>
+<link rel="stylesheet" href="../static/css-files/register.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registration</title>
+</head>
+<body id="bg" class="universal-padding body-background" style="background-image: url('{% static 'imgs/bg.jpg' %}');background-repeat: no-repeat;background-size: cover;">
+    <section class="login my-4 mx-5">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-lg-5">
+                    <img src="{% static 'staticHome.jpg' %}" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-7 text-center px-5 pt-5">
+                    <img src="{% static 'face.png' %}" alt="Responsive image" width="60" height="60" >
+                    <h4> User registration</h4>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                {{message}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="offset-1 col-lg-10" >
+                            <div class="input-group py-2 pt-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text py-3 pt-3" id="basic-addon1">
+                                      <img src="{% static 'bootstrap-icons/person-fill.svg' %}" class="img-responsive" alt="Responsive image" width="30" height="24" />
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control py-3 pt-3" placeholder="Username" name="username" value="{{ username }}">
+                            </div>
+                        </div>
+                        <div class="offset-1 col-lg-10" >
+                            <div class="input-group py-2 pt-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text py-3 pt-3" id="basic-addon2">
+                                      <img src="{% static 'bootstrap-icons/person-circle.svg' %}" class="img-responsive" alt="Responsive image" width="30" height="24" />
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control py-3 pt-3" placeholder="Name" name="name" value="{{ name }}">
+                            </div>
+                        </div>
+                        <div class="offset-1 col-lg-10" >
+                            <div class="input-group py-2 pt-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text py-3 pt-3" id="basic-addon3">
+                                      <img src="{% static 'bootstrap-icons/at.svg' %}" class="img-responsive" alt="Responsive image" width="30" height="24" />
+                                    </span>
+                                </div>
+                                <input type="email" class="form-control py-3 pt-3" placeholder="Email address" name="email" value="{{ email }}">
+                            </div>
+                        </div>
+                        <div class="offset-1 col-lg-10" >
+                            <div class="input-group py-2 pt-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text py-3 pt-3" id="basic-addon4">
+                                      <img src="{% static 'bootstrap-icons/key-fill.svg' %}" class="img-responsive" alt="Responsive image" width="30" height="24" />
+                                    </span>
+                                </div>
+                                <input type="password" class="form-control py-3 pt-3" placeholder="New password" name="password1" value="{{ password1 }}">
+                            </div>
+                        </div>
+                        <div class="offset-1 col-lg-10" >
+                            <div class="input-group py-2 pt-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text py-3 pt-3" id="basic-addon5">
+                                      <img src="{% static 'bootstrap-icons/key-fill.svg' %}" class="img-responsive" alt="Responsive image" width="30" height="24" />
+                                    </span>
+                                </div>
+                                <input type="password" class="form-control py-3 pt-3" placeholder="Confirm password" name="password2" value="{{ password2 }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="offset-1 col-lg-10">
+                                <button type="submit" class="btn1 my-3 mb-3">Create User</button>
+                            </div>
+                        </div>
+                        <p class="h5 py-1 pt-1">Already a user?</p>
+                        <a class="btn btn-primary btn-sm py-2 pt-2" href="/">Login</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
