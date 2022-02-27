@@ -1,16 +1,43 @@
 from django import forms
-from giveaway.models import Food
+from giveaway.models import Food, Clothes
 
 TYPE_CHOICES = [
-    ('grocery', 'Grocery'),
-    ('bakery', 'Bakery'),
-    ('grains', 'Grains'),
-    ('veggies', 'Veggies'),
-    ('fruits', 'Fruits'),
-    ('grains', 'Grains'),
-    ('fresh produce', 'Fresh Produce')
+    ('Grocery', 'Grocery'),
+    ('Bakery', 'Bakery'),
+    ('Grains', 'Grains'),
+    ('Veggies', 'Veggies'),
+    ('Fruits', 'Fruits'),
+    ('Grains', 'Grains'),
+    ('Fresh Produce', 'Fresh Produce')
 ]
 
+SIZE_CHOICES = [
+    ('XS', 'XS'),
+    ('S', 'S'),
+    ('M', 'M'),
+    ('L', 'L'),
+    ('XL', 'XL')
+]
+
+GENDER_CHOICES = [
+    ('Male', 'Male'),
+    ('Female', 'Female'),
+    ('Gender Neutral', 'Gender Neutral'),
+    ('Any', 'Any')
+]
+CONDITION_CHOICES = [
+    ('Poor', 'Poor'),
+    ('Fair', 'Fair'),
+    ('Good', 'Good'),
+    ('New', 'New')
+]
+
+ITEM_CHOICES = [
+    ('Furniture', 'Furniture'),
+    ('Tools', 'Tools'),
+    ('Appliances', 'Appliances'),
+    ('Other', 'Other')
+]
 
 class FoodForm(forms.ModelForm):
     class Meta:
@@ -28,4 +55,41 @@ class FoodForm(forms.ModelForm):
             'image': forms.FileField(),
             'expiry': forms.DateField(),
             'description': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+class ClothesForm(forms.ModelForm):
+    class Meta:
+        model = Clothes
+        fields = ('size', 'gender', 'condition', 'address', 'city', 'state', 'contactno', 'description', 'pickupdate')
+
+        # create a widegets dictionary
+        widget = {
+            'size': forms.Form(forms.ChoiceField(choices=SIZE_CHOICES)),
+            'gender': forms.Form(forms.ChoiceField(choices=GENDER_CHOICES)),
+            'condition': forms.Form(forms.ChoiceField(choices=CONDITION_CHOICES)),
+            'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'address': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'state': forms.TextInput(attrs={'class': 'form-control'}),
+            'contactno': forms.TextInput(attrs={'class': 'form-control'}),
+            'pickupdate': forms.DateField(widget=forms.SelectDateWidget()),
+        }
+
+
+class HouseholdItemsForm(forms.ModelForm):
+    class Meta:
+        model = Clothes
+        fields = ('size', 'condition', 'address', 'city', 'state', 'contactno', 'description', 'pickupdate')
+
+        # create a widegets dictionary
+        widget = {
+            'type': forms.Form(forms.ChoiceField(choices=ITEM_CHOICES)),
+            'condition': forms.Form(forms.ChoiceField(choices=CONDITION_CHOICES)),
+            'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'address': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'state': forms.TextInput(attrs={'class': 'form-control'}),
+            'contactno': forms.TextInput(attrs={'class': 'form-control'}),
+            'pickupdate': forms.DateField(widget=forms.SelectDateWidget()),
         }

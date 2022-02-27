@@ -27,6 +27,8 @@ urlpatterns = [
     path('search/', searchApp.test, name='search'),
     path('login', loginApp.userlogin, name='login'),
     path('give_away/food_post/', giveawayApp.foodPostRequest, name='food_post'),
+    path('give_away/clothes_post/', giveawayApp.clothesPostRequest, name='clothes_post'),
+    path('give_away/items_post/', giveawayApp.itemsPostRequest, name='items_post'),
     path('register/', loginApp.register_request),
     path('home/', homeApp.home, name='home_div'),
     path('give_away/', homeApp.giveAway, name='give_away'),
@@ -35,6 +37,8 @@ urlpatterns = [
     path('populate/', homeApp.populate, name='populate'),
     path('clothes_pickup/', homeApp.clothes, name='clothes'),
     path('household_pickup/', homeApp.household, name='household'),
+    path('populate-clothes/', homeApp.populateClothes, name='populateClothes'),
+    path('checkout-example/', homeApp.checkoutExample, name='checkoutExamples'),
 ]
 
 

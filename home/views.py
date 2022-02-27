@@ -24,3 +24,9 @@ def clothes(request):
 def household(request):
     return render(request, 'household.html')
 
+def populateClothes(request):
+    return render(request, 'populate-clothes.html')
+
+def checkoutExample(request):
+    return render(request, 'checkout-example.html')
+

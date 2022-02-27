@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <title>Items Post</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{%  static 'css/itemspost-css.css'  %}">
+</head>
+<body>
+<section class="items_info">
+    <h1 class ="title">HOUSEHOLD ITEMS INFO</h1>
+        <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}
+            {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="upload-form row">
+                <div class ="form-field col-lg-12">
+                    <input id="description" class="input-text" type="text" name="description" value="{{ description }}">
+                    <label for ="description" class="label">Description</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <select name="type" class="dropdown" id="type" >
+                        <option value="Furniture">Furniture</option>
+                        <option value="Tools">Tools</option>
+                        <option value="Appliances">Appliances</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <label for="type" class ="label">Type:</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <select name="condition" class="dropdown" id="condition">
+                        <option value="Like New">Like New</option>
+                        <option value="Good">Good</option>
+                        <option value="Used">Used</option>
+                    </select>
+                    <label for="condition" class ="label">Condition</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <input id="address" class="input-text" type="text" name="address" value="{{ address }}">
+                    <label for ="address" class="label">Address</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <input id="contactno" class="input-text" type="text" name="contactno">
+                    <label for ="contactno" class="label">Mobile</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <input id="city" class="input-text" type="text" name="city" value="{{ city }}">
+                    <label for ="address" class="label">City</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <input id="state" class="input-text" type="text" name="state" value="{{ state }}">
+                    <label for ="address" class="label">State</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <input id="pickupdate" class="input-text" type="date" name="pickupdate" value="{{ expiry }}">
+                    <label class="label">Available Till</label>
+                </div>
+
+                <div class ="form-field col-lg-12">
+                    <form action="/action_page.php">
+                        <input type="file" id="image" name="file" value="{{ image }}" multiple>
+                        <label for ="image" class="label">Upload File</label>
+                    </form>
+                </div>
+
+                <div class ="form-field col-lg-12">
+                    <input class ="submit-btn" type="submit" value="Submit" name="">
+                </div>
+            </div>
+        </form>
+        </div>
+    </section>
+</body>
+</html>
