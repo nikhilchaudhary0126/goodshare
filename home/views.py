@@ -30,3 +30,6 @@ def populateClothes(request):
 def checkoutExample(request):
     return render(request, 'checkout-example.html')
 
+def populateHousehold(request):
+    return render(request, 'populate-household.html')
+
