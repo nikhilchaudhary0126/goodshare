@@ -1,5 +1,6 @@
 from urllib.request import urlretrieve
 
+from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import redirect
 
@@ -14,6 +15,7 @@ from django.contrib import messages
 from goodshare.settings import API_KEY, MAP_URL
 
 
+@login_required
 def foodPostRequest(request):
     if request.method == "POST":
         try:
@@ -70,6 +72,7 @@ def getLongLat(address: str) -> (int, int):
     return data
 
 
+@login_required
 def clothesPostRequest(request):
     if request.method == "POST":
         try:
@@ -117,47 +120,48 @@ def clothesPostRequest(request):
     return render(request, 'clothPost.html', {"form": ClothesForm})
 
 
+@login_required
 def itemsPostRequest(request):
     if request.method == "POST":
         # try:
-            print(request.POST)
-            type = request.POST['type']
-            address = request.POST['address']
-            city = request.POST['city']
-            state = request.POST['state']
-            pickupdate = request.POST['pickupdate']
-            contactno = request.POST['contactno']
-            description = request.POST['description']
-            condition = request.POST['condition']
+        print(request.POST)
+        type = request.POST['type']
+        address = request.POST['address']
+        city = request.POST['city']
+        state = request.POST['state']
+        pickupdate = request.POST['pickupdate']
+        contactno = request.POST['contactno']
+        description = request.POST['description']
+        condition = request.POST['condition']
 
-            if pickupdate and datetime.strptime(pickupdate, "%Y-%m-%d") > datetime.now():
-                if type and address and city and state and contactno:
-                    combinedAddress = address + "," + city + "," + state
-                    data = getLongLat(combinedAddress)
-                    longitude = data['results'][0]['locations'][0]['displayLatLng']['lng']
-                    latitude = data['results'][0]['locations'][0]['displayLatLng']['lat']
+        if pickupdate and datetime.strptime(pickupdate, "%Y-%m-%d") > datetime.now():
+            if type and address and city and state and contactno:
+                combinedAddress = address + "," + city + "," + state
+                data = getLongLat(combinedAddress)
+                longitude = data['results'][0]['locations'][0]['displayLatLng']['lng']
+                latitude = data['results'][0]['locations'][0]['displayLatLng']['lat']
 
-                    f = HouseholdItems(address=address, city=city, state=state, type=type, latitude=latitude,
-                             longitude=longitude, pickupdate=pickupdate, contactno=contactno, condition=condition,
-                             description=description)
-                    f.save()
-                    postid = f.id
+                f = HouseholdItems(address=address, city=city, state=state, type=type, latitude=latitude,
+                                   longitude=longitude, pickupdate=pickupdate, contactno=contactno, condition=condition,
+                                   description=description)
+                f.save()
+                postid = f.id
 
-                    files = request.FILES.getlist('file')
-                    fs = FileSystemStorage()
-                    for file in files:
-                        path = os.path.join("itemspost", str(postid), file.name)
-                        fs.save(path, file)
-                    mappath = os.path.join("media", "itemspost", str(postid))
-                    curpath = os.getcwd()
-                    os.chdir(mappath)
-                    urlretrieve(data['results'][0]['locations'][0]['mapUrl'], "map.jpg")
-                    os.chdir(curpath)
-                    return redirect('home_div')
-                else:
-                    messages.error(request, "Food Post failed! Please enter all details.")
+                files = request.FILES.getlist('file')
+                fs = FileSystemStorage()
+                for file in files:
+                    path = os.path.join("itemspost", str(postid), file.name)
+                    fs.save(path, file)
+                mappath = os.path.join("media", "itemspost", str(postid))
+                curpath = os.getcwd()
+                os.chdir(mappath)
+                urlretrieve(data['results'][0]['locations'][0]['mapUrl'], "map.jpg")
+                os.chdir(curpath)
+                return redirect('home_div')
             else:
-                messages.error(request, "Food Post failed! Please select a future expiry date")
-        # except:
-        #     return redirect('home_div')
+                messages.error(request, "Food Post failed! Please enter all details.")
+        else:
+            messages.error(request, "Food Post failed! Please select a future expiry date")
+    # except:
+    #     return redirect('home_div')
     return render(request, 'householdItemsPost.html', {"form": HouseholdItemsForm})
