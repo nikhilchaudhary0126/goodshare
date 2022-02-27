@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Food PickUp</title>
+    <link rel="stylesheet"  href="{%  static  'css/household-css.css'  %}">
+
+    <script>
+        function changeText() {
+          x = document.getElementById("mySelect");
+          x.options[x.selectedIndex].text = "Melon";
+        }
+        </script>
+</head>
+
+<body>
+
+    <div class="contact-us">
+        <form action="/populate/">
+          <input placeholder="Name" required="" type="text"/>
+          <input list="browsers" name="myBrowser" placeholder="Type" required=""/>
+          <datalist id="browsers">
+            <option value="Furniture">
+            <option value="Tools">
+            <option value="Appliances">
+            <option value="Office Supplies">
+            <option value="Other">
+          </datalist>
+          <input list="condition" name="myBrowser" placeholder="Condition" required=""/>
+          <datalist id="condition">
+            <option value="New">
+            <option value="Great">
+            <option value="Good">
+            <option value="Fair">
+            <option value="Poor">
+          </datalist>
+          <input name="customerEmail" required="" placeholder="Email" type="email" />
+          <div style="float:left; width: 45%"><input name="customerPhone" required=""  placeholder="City" type="tel"/></div>
+          <div style="float:right; width: 50%"><input name="customerPhone" required=""  placeholder="State" type="tel"/></div>
+          <input name="customerEmail" required="" placeholder="Address" type="text" />
+          <button type="submit" style="margin-top:10px" value="submit">Pick Up</button>
+        </form>
+      </div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+{% load static %}
+<script src="{% static '/js/food-js.js' %}"></script>
+
+
+
+</body>
+</html>

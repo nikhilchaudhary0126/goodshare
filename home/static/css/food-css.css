@@ -1,72 +1,64 @@
+@import url("https://fonts.googleapis.com/css?family=Fjalla+One&display=swap");
+* {
+  margin: 0;
+  padding: 0; }
 
-/* Dropdown Button */
-.dropbtn {
-  background-color: #04AA6D;
-  color: grey;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-}
+body {
+  background: url("../imgs/food.jpg") center center no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  justify-items: center; }
 
-/* The container <div> -to position the dropdown */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+.contact-us {
+  background: #f8f4e5;
+  padding: 50px 100px;
+  border: 2px solid black;
+  box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px black; }
 
-/* Dropdown list */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
+input {
   display: block;
-}
+  width: 100%;
+  font-size: 14pt;
+  line-height: 28pt;
+  font-family: "Fjalla One";
+  margin-bottom: 28pt;
+  border: none;
+  border-bottom: 5px solid black;
+  background: #f8f4e5;
+  min-width: 250px;
+  padding-left: 5px;
+  outline: none;
+  color: black; }
 
+input:focus {
+  border-bottom: 5px solid #ffa580; }
 
-/* Style the submit button */
-form.example button {
-  float: right;
-  padding: 5px;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none; /* Prevent double borders */
-  cursor: pointer;
-}
+button {
+  display: block;
+  margin: 0 auto;
+  line-height: 28pt;
+  padding: 0 20px;
+  background: #ffa580;
+  letter-spacing: 2px;
+  transition: .2s all ease-in-out;
+  outline: none;
+  border: 1px solid black;
+  box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px black; }
+  button:hover {
+    background: black;
+    color: white;
+    border: 1px solid black; }
 
-.container{
-    height: 100vh;
-    width: 100%;
-    background-image: url("https://cc-prod.scene7.com/is/image/CCProdAuthor/Black-background_P1_900x420?$pjpeg$&jpegSize=200&wid=900");
-    background-size: cover;
-    padding-left: 5%
-    padding-right: 5%
-    box-sizing: border-box;
-    position: relative;
-    }
-.surround{
+::selection {
+  background: #ffc8ff; }
 
-
-}
-.box{
-    background-color:grey;
-    text-align:left;
-    padding:20px;
-    border:1px ghostwhite;
-    margin: 450px;
-    position: absolute;
-    top: 0%;
-    transform: translate(0, -50%);
-    border-radius: 10px;
-    opacity: .85;
-   }
-
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  border-bottom: 5px solid #95a4ff;
+  -webkit-text-fill-color: #2A293E;
+  -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
+  transition: background-color 5000s ease-in-out 0s; }

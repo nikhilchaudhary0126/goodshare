@@ -6,43 +6,36 @@
     <meta charset="UTF-8">
     <title>Food PickUp</title>
     <link rel="stylesheet"  href="{%  static  'css/food-css.css'  %}">
+
+    <script>
+        function changeText() {
+          x = document.getElementById("mySelect");
+          x.options[x.selectedIndex].text = "Melon";
+        }
+        </script>
 </head>
 
-<body style="background-color:grey;">
+<body>
 
-<div class = "container">
-    <div class = "navbar">
-        <h1 class="big-text" style="serif; color:white; font-size:150px;">
-            <center>GOODSHARE</center>
-        </h1>
-        <center>
-            <div class="box">
-                 <form class="example" id="myForm" action="/populate/" method="GET">
-                     <label for="food-names">Food Category</label>
-                     <select name="food-names" id="food-namess">
-                         <option class="fruit-class" value="Fruit">Fruit</option>
-                         <option value="Vegetables">Vegetables</option>
-                         <option value="Meat">Meat</option>
-                         <option value="Dairy">Dairy</option>
-                         <option value="Grains">Grains</option>
-                         <option value="Baked Goods">Baked Goods</option>
-                 </form>
-            </div>
-
-                <div class="fill">
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <p style="border-radius: 10px;">Pick-Up Date&nbsp;&nbsp;<input name="time" type="datetime-local" id="Test_DatetimeLocal"></p>
-                <p>Address&nbsp;<input type="text" name="address" size="25" maxlength="100"></p>
-                <p>City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="city" size="10" maxlength="50"></p>
-                <p>State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="state" size="3" maxlength="18">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </div>
-
-
-        </center>
-
-    </div>
-</div>
+    <div class="contact-us">
+        <form action="/populate/">
+          <input placeholder="Name" required="" type="text"/>
+          <input list="browsers" name="myBrowser" placeholder="Type of Food" required=""/>
+          <datalist id="browsers">
+            <option value="Veggies">
+            <option value="Fruits">
+            <option value="Bakery">
+            <option value="Packed">
+            <option value="Grains">
+            <option value="Fresh Produce">
+          </datalist>
+          <input name="customerEmail" required="" placeholder="Email" type="email" />
+          <div style="float:left; width: 45%"><input name="customerPhone" required=""  placeholder="City" type="tel"/></div>
+          <div style="float:right; width: 50%"><input name="customerPhone" required=""  placeholder="State" type="tel"/></div>
+          <input name="customerEmail" required="" placeholder="Address" type="text" />
+          <button type="submit" style="margin-top:10px" value="submit">Pick Up</button>
+        </form>
+      </div>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 

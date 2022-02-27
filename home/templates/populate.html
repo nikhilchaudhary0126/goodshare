@@ -6,13 +6,26 @@
     <link rel="stylesheet"  href="{%  static  'css/populate-css.css'  %}">
 </head>
 <body>
-  <main class="page-content">
-    <div class="card">
+  <main class="page-content" id="father">
+    <div class="card" id="child">
         <div class="content">
-            <h2 class="title">Mountain View</h2>
+            <h2 class="title" id="title-name">Mountain View</h2>
             <p class="copy">Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p><button class="btn">Book Now</button>
         </div>
     </div>
+{% comment %}     
+    <script>
+      var child = document.getElementById('child');
+      var father = document.getElementById('father');
+
+
+      document.getElementById('title-name').innerHTML = "TEST";
+
+
+      for (let i = 0; i < 4; i++) {
+        father.appendChild(child.cloneNode(true))
+      }
+    </script> {% endcomment %}
     <div class="card">
         <div class="content">
             <h2 class="title">To The Beach</h2>
@@ -31,12 +44,6 @@
             <p class="copy">Seriously, straight up, just blast off into outer space today</p><button class="btn">Book Now</button>
         </div>
     </div>
-    <div class="card">
-      <div class="content">
-          <h2 class="title">Explore The Galaxy</h2>
-          <p class="copy">Seriously, straight up, just blast off into outer space today</p><button class="btn">Book Now</button>
-      </div>
-  </div>
 </main>
 {% load static %}
 <script></script>

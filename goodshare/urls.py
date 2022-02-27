@@ -33,6 +33,8 @@ urlpatterns = [
     path('pickup/', homeApp.pickUp, name='pickup'),
     path('food_pickup/', homeApp.food, name='food'),
     path('populate/', homeApp.populate, name='populate'),
+    path('clothes_pickup/', homeApp.clothes, name='clothes'),
+    path('household_pickup/', homeApp.household, name='household'),
 ]
 
 

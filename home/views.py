@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+import os 
 
 def home(request):
     return render(request, 'home.html')
@@ -17,3 +17,10 @@ def food(request):
 
 def populate(request):
     return render(request, 'populate.html')
+
+def clothes(request):
+    return render(request, 'clothes.html')
+
+def household(request):
+    return render(request, 'household.html')
+
