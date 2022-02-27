@@ -16,45 +16,47 @@ from goodshare.settings import API_KEY, MAP_URL
 
 def foodPostRequest(request):
     if request.method == "POST":
-        foodtype = request.POST['type']
-        address = request.POST['address']
-        city = request.POST['city']
-        state = request.POST['state']
-        quantity = request.POST['quantity']
-        expiry = request.POST['expiry']
-        contactno = request.POST['contactno']
-        description = request.POST['description']
-        form = FoodForm(request.POST, request.FILES)
-        if form.is_valid():
+        try:
+            foodtype = request.POST['type']
+            address = request.POST['address']
+            city = request.POST['city']
+            state = request.POST['state']
+            quantity = request.POST['quantity']
+            expiry = request.POST['expiry']
+            contactno = request.POST['contactno']
+            description = request.POST['description']
+            form = FoodForm(request.POST, request.FILES)
+            if form.is_valid():
+                if expiry and datetime.strptime(expiry, "%Y-%m-%d") > datetime.now():
+                    if foodtype and address and city and state and quantity and contactno:
+                        combinedAddress = address + "," + city + "," + state
+                        data = getLongLat(combinedAddress)
+                        longitude = data['results'][0]['locations'][0]['displayLatLng']['lng']
+                        latitude = data['results'][0]['locations'][0]['displayLatLng']['lat']
 
-            if expiry and datetime.strptime(expiry, "%Y-%m-%d") > datetime.now():
-                if foodtype and address and city and state and quantity and contactno:
-                    combinedAddress = address + "," + city + "," + state
-                    data = getLongLat(combinedAddress)
-                    longitude = data['results'][0]['locations'][0]['displayLatLng']['lng']
-                    latitude = data['results'][0]['locations'][0]['displayLatLng']['lat']
+                        f = Food(address=address, city=city, state=state, type=foodtype, latitude=latitude,
+                                 longitude=longitude, expiry=expiry, quantity=quantity, contactno=contactno,
+                                 description=description)
+                        f.save()
+                        postid = f.id
 
-                    f = Food(address=address, city=city, state=state, type=foodtype, latitude=latitude,
-                             longitude=longitude, expiry=expiry, quantity=quantity, contactno=contactno,
-                             description=description)
-                    f.save()
-                    postid = f.id
-
-                    files = request.FILES.getlist('file')
-                    fs = FileSystemStorage()
-                    for file in files:
-                        path = os.path.join("foodpost", str(postid), file.name)
-                        fs.save(path, file)
-                    mappath = os.path.join("media", "foodpost", str(postid))
-                    curpath = os.getcwd()
-                    os.chdir(mappath)
-                    urlretrieve(data['results'][0]['locations'][0]['mapUrl'], "map.jpg")
-                    os.chdir(curpath)
-                    return redirect('home_div')
+                        files = request.FILES.getlist('file')
+                        fs = FileSystemStorage()
+                        for file in files:
+                            path = os.path.join("foodpost", str(postid), file.name)
+                            fs.save(path, file)
+                        mappath = os.path.join("media", "foodpost", str(postid))
+                        curpath = os.getcwd()
+                        os.chdir(mappath)
+                        urlretrieve(data['results'][0]['locations'][0]['mapUrl'], "map.jpg")
+                        os.chdir(curpath)
+                        return redirect('home_div')
+                    else:
+                        messages.error(request, "Food Post failed! Please enter all details.")
                 else:
-                    messages.error(request, "Food Post failed! Please enter all details.")
-            else:
-                messages.error(request, "Food Post failed! Please select a future expiry date")
+                    messages.error(request, "Food Post failed! Please select a future expiry date")
+        except:
+            return redirect('home_div')
     return render(request, 'foodPost.html', {"form": FoodForm})
 
 
@@ -70,6 +72,7 @@ def getLongLat(address: str) -> (int, int):
 
 def clothesPostRequest(request):
     if request.method == "POST":
+        print(request.POST)
         description = request.POST['description']
         size = request.POST['size']
         gender = request.POST['gender']
@@ -79,9 +82,8 @@ def clothesPostRequest(request):
         city = request.POST['city']
         state = request.POST['state']
         pickupDate = request.POST['pickupdate']
-        form = FoodForm(request.POST, request.FILES)
+        form = ClothesForm(request.POST, request.FILES)
         if form.is_valid():
-
             if pickupDate and datetime.strptime(pickupDate, "%Y-%m-%d") > datetime.now():
                 if size and gender and city and state and address and contactno and condition:
                     combinedAddress = address + "," + city + "," + state
@@ -110,7 +112,6 @@ def clothesPostRequest(request):
                     messages.error(request, "Clothes Post failed! Please enter all details.")
             else:
                 messages.error(request, "Clothes Post failed! Please select a future expiry date")
-
     return render(request, 'clothPost.html', {"form": ClothesForm})
 
 

@@ -20,11 +20,10 @@
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="upload-form row">
-
                     <div class ="form-field col-lg-12">
                     <input id="description" class="input-text" type="text" name="description" value="{{ description }}">
                     <label for ="description" class="label">Description</label>
-                </div>
+                    </div>
 
                 <div class ="form-field col-lg-6">
                     <select name="type" class="dropdown" id="type" >

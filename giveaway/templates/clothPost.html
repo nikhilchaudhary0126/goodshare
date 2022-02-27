@@ -9,83 +9,91 @@
 <body>
 <section class="furniture_info">
     <h1 class ="title">CLOTHES INFO</h1>
-
         <div class="container">
-        <div class="upload-form row">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}
+            {% endif %}
 
-            <div class ="form-field col-lg-12">
-                <input id="description" class="input-text" type="text" name="">
-                <label for ="description" class="label">Description</label>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="upload-form row">
+                <div class ="form-field col-lg-12">
+                    <input id="description" class="input-text" type="text" name="description" value="{{ description }}">
+                    <label for ="description" class="label">Description</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <select name="size" class="dropdown" id="size" >
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                    <label for="size" class ="label">Size</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <select name="gender" class="dropdown" id="gender" >
+                        <option value="Gender Neutral">Gender Neutral</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Any">Any</option>
+                    </select>
+                    <label for="gender" class ="label">Gender</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <select name="condition" class="dropdown" id="condition">
+                        <option value="Like New">Like New</option>
+                        <option value="Good">Good</option>
+                        <option value="Used">Used</option>
+                    </select>
+                    <label for="condition" class ="label">Condition</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <input id="contactno" class="input-text" type="text" name="contactno">
+                    <label for ="contactno" class="label">Mobile</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <input id="address" class="input-text" type="text" name="address" value="{{ address }}">
+                    <label for ="address" class="label">Address</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <input id="city" class="input-text" type="text" name="city" value="{{ city }}">
+                    <label for ="address" class="label">City</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <input id="state" class="input-text" type="text" name="state" value="{{ state }}">
+                    <label for ="address" class="label">State</label>
+                </div>
+
+                <div class ="form-field col-lg-6">
+                    <input id="pickupdate" class="input-text" type="date" name="pickupdate" value="{{ expiry }}">
+                    <label class="label">Available Till</label>
+                </div>
+
+                <div class ="form-field col-lg-12">
+                    <form action="/action_page.php">
+                        <input type="file" id="image" name="file" value="{{ image }}" multiple>
+                        <label for ="image" class="label">Upload File</label>
+                    </form>
+                </div>
+
+                <div class ="form-field col-lg-12">
+                    <input class ="submit-btn" type="submit" value="Submit" name="">
+                </div>
             </div>
-
-            <div class ="form-field col-lg-6">
-                <select name="size" class="dropdown" id="size" >
-                    <option value="XS">XS</option>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                </select>
-                <label for="size" class ="label">Size</label>
-            </div>
-
-            <div class ="form-field col-lg-6">
-                <select name="gender" class="dropdown" id="gender" >
-                    <option value="Gender Neutral">Gender Neutral</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Any">Any</option>
-                </select>
-                <label for="gender" class ="label">Gender</label>
-            </div>
-
-            <div class ="form-field col-lg-6">
-                <select name="condition" class="dropdown" id="condition">
-                    <option value="Like New">Like New</option>
-                    <option value="Good">Good</option>
-                    <option value="Used">Used</option>
-                </select>
-                <label for="condition" class ="label">Condition</label>
-            </div>
-
-            <div class ="form-field col-lg-6">
-                <input id="contactno" class="input-text" type="text" name="contactno">
-                <label for ="contactno" class="label">Mobile</label>
-            </div>
-
-            <div class ="form-field col-lg-6">
-                <input id="address" class="input-text" type="text" name="">
-                <label for ="address" class="label">Address</label>
-            </div>
-
-            <div class ="form-field col-lg-6">
-                <input id="city" class="input-text" type="text" name="city" value="{{ city }}">
-                <label for ="address" class="label">City</label>
-            </div>
-
-            <div class ="form-field col-lg-6">
-                <input id="state" class="input-text" type="text" name="state" value="{{ state }}">
-                <label for ="address" class="label">State</label>
-            </div>
-
-            <div class ="form-field col-lg-6">
-                <input id="pickupdate" class="input-text" type="date" name="pickupdate" value="{{ expiry }}">
-                <label class="label">Available Till</label>
-            </div>
-
-            <div class ="form-field col-lg-12">
-                <form action="/action_page.php">
-                    <input type="file" id="image" name="file" value="{{ image }}" multiple>
-                    <label for ="image" class="label">Upload File</label>
-                </form>
-            </div>
-
-            <div class ="form-field col-lg-12">
-                <input class ="submit-btn" type="submit" value="Submit" name="">
-            </div>
-
+        </form>
         </div>
-        </div>
-</section>
+    </section>
 </body>
 </html>
