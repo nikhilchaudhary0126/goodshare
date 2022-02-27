@@ -13,6 +13,7 @@ class Food(models.Model):
     contactno = models.IntegerField()
     description = models.CharField(max_length=250)
 
+
 class Clothes(models.Model):
     size = models.CharField(max_length=3)
     gender = models.CharField(max_length=20)
@@ -26,5 +27,15 @@ class Clothes(models.Model):
     description = models.CharField(max_length=250)
     pickupdate = models.DateTimeField()
 
-class Items(models.Model):
-    pass
+
+class HouseholdItems(models.Model):
+    type = models.CharField(max_length=20)
+    condition = models.CharField(max_length=5)
+    address = models.CharField(max_length=30)
+    city = models.CharField(max_length=30)
+    state = models.CharField(max_length=30)
+    pickupdate = models.DateTimeField()
+    contactno = models.IntegerField()
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    description = models.CharField(max_length=250)

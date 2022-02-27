@@ -32,6 +32,13 @@ CONDITION_CHOICES = [
     ('New', 'New')
 ]
 
+ITEM_CHOICES = [
+    ('Furniture', 'Furniture'),
+    ('Tools', 'Tools'),
+    ('Appliances', 'Appliances'),
+    ('Other', 'Other')
+]
+
 class FoodForm(forms.ModelForm):
     class Meta:
         model = Food
@@ -50,16 +57,34 @@ class FoodForm(forms.ModelForm):
             'description': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
-class ClothesForm(forms.ModelForm):
 
+class ClothesForm(forms.ModelForm):
     class Meta:
         model = Clothes
-        fields = ('size', 'gender', 'condition', 'address', 'city', 'state', 'contactno', 'description','pickupdate')
+        fields = ('size', 'gender', 'condition', 'address', 'city', 'state', 'contactno', 'description', 'pickupdate')
 
         # create a widegets dictionary
         widget = {
             'size': forms.Form(forms.ChoiceField(choices=SIZE_CHOICES)),
             'gender': forms.Form(forms.ChoiceField(choices=GENDER_CHOICES)),
+            'condition': forms.Form(forms.ChoiceField(choices=CONDITION_CHOICES)),
+            'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'address': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'state': forms.TextInput(attrs={'class': 'form-control'}),
+            'contactno': forms.TextInput(attrs={'class': 'form-control'}),
+            'pickupdate': forms.DateField(widget=forms.SelectDateWidget()),
+        }
+
+
+class HouseholdItemsForm(forms.ModelForm):
+    class Meta:
+        model = Clothes
+        fields = ('size', 'condition', 'address', 'city', 'state', 'contactno', 'description', 'pickupdate')
+
+        # create a widegets dictionary
+        widget = {
+            'type': forms.Form(forms.ChoiceField(choices=ITEM_CHOICES)),
             'condition': forms.Form(forms.ChoiceField(choices=CONDITION_CHOICES)),
             'description': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
