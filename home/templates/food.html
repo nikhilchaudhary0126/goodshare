@@ -1,79 +1,56 @@
 <!DOCTYPE html>
-{% load static %}
-
 <html lang="en">
-
-<body style="background-color:grey;">
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
     <title>Food PickUp</title>
-
     <link rel="stylesheet"  href="{%  static  'css/food-css.css'  %}">
 </head>
 
+<body style="background-color:grey;">
 
-<body>
-    <div class = "container">
-        <div class = "navbar">
-            <nav>
-                <ul>
-                    <li><a href=""; style="color:black ">Home</a>
+<div class = "container">
+    <div class = "navbar">
+        <h1 class="big-text" style="serif; color:white; font-size:150px;">
+            <center>GOODSHARE</center>
+        </h1>
+        <center>
+            <div class="box">
+                 <form class="example" id="myForm" action="/populate/" method="GET">
+                     <label for="food-names">Food Category</label>
+                     <select name="food-names" id="food-namess">
+                         <option class="fruit-class" value="Fruit">Fruit</option>
+                         <option value="Vegetables">Vegetables</option>
+                         <option value="Meat">Meat</option>
+                         <option value="Dairy">Dairy</option>
+                         <option value="Grains">Grains</option>
+                         <option value="Baked Goods">Baked Goods</option>
+                 </form>
+            </div>
 
-                    </li>
-                </ul>
-            </nav>
-        </div>
+                <div class="fill">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <p style="border-radius: 10px;">Pick-Up Date&nbsp;&nbsp;<input name="time" type="datetime-local" id="Test_DatetimeLocal"></p>
+                <p>Address&nbsp;<input type="text" name="address" size="25" maxlength="100"></p>
+                <p>City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="city" size="10" maxlength="50"></p>
+                <p>State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="state" size="3" maxlength="18">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </div>
+
+
+        </center>
+
     </div>
-
-<h style="serif; color:white; font-size:150px;">
-    <center> GOODSHARE </center>
-</h>
-
-<p>
-
-<center>
-<form class="example" id="myForm" action="/populate/" method="GET">
-    <button type="submit"><i class="fa fa-search"></i></button>
-    <label for="food-names">Food Category</label>
-    <select name="food-names" id="food-namess">
-    <option class="fruit-class" value="Fruit">Fruit</option>
-    <option value="Vegetables">Vegetables</option>
-    <option value="Meat">Meat</option>
-    <option value="Dairy">Dairy</option>
-    <option value="Grains">Grains</option>
-    <option value="Baked Goods">Baked Goods</option>
-</form>
-</select>
-&nbsp;&nbsp;&nbsp;&nbsp;
-    Pick-Up Date
-        <input name="time" type="datetime-local" id="Test_DatetimeLocal">
-&nbsp;&nbsp;&nbsp;&nbsp;
-    Location
-        <input type="text" name="address" size="25" maxlength="100">
-</center>
+</div>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-
-<!--</body>-->
-<!--</p>-->
-
-<!--<p>-->
-<!--City-->
-<!-- <input type="text" name="city" size="10" maxlength="50">-->
-<!--</p>-->
-
-<!--<p>-->
-<!--State-->
-<!-- <input type="text" name="state" size="3" maxlength="18">-->
-
-<!--</p>-->
 
 
 {% load static %}
 <script src="{% static '/js/food-js.js' %}"></script>
 
 
+
+</body>
 </html>

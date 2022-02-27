@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<body style="background-color:grey;">
+<meta charset="UTF-8">
+
+<head>
+
+    <title>Food PickUp</title>
+
+    <link rel="stylesheet"  href="{%  static  'css/food-css.css'  %}">
+</head>
+
+
+<body>
+    <div class = "container">
+        <div class = "navbar">
+            <nav>
+                <ul>
+                    <li><a href=""; style="color:black ">Home</a>
+
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+<h style="serif; color:white; font-size:150px;">
+    <center> GOODSHARE </center>
+</h>
+
+<p>
+
+<center>
+<form class="example" id="myForm" action="/populate/" method="GET">
+    <button type="submit"><i class="fa fa-search"></i></button>
+    <label for="food-names">Food Category</label>
+    <select name="food-names" id="food-namess">
+    <option class="fruit-class" value="Fruit">Fruit</option>
+    <option value="Vegetables">Vegetables</option>
+    <option value="Meat">Meat</option>
+    <option value="Dairy">Dairy</option>
+    <option value="Grains">Grains</option>
+    <option value="Baked Goods">Baked Goods</option>
+</form>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+    Pick-Up Date
+        <input name="time" type="datetime-local" id="Test_DatetimeLocal">
+&nbsp;&nbsp;&nbsp;&nbsp;
+    Location
+        <input type="text" name="address" size="25" maxlength="100">
+</center>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+
+<p>
+City
+ <input type="text" name="city" size="10" maxlength="50">
+</p>
+
+<p>
+State
+ <input type="text" name="state" size="3" maxlength="18">
+
+</p>
+
+
+{% load static %}
+<script src="{% static '/js/food-js.js' %}"></script>
+
+
+</html>
