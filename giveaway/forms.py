@@ -62,6 +62,7 @@ class ClothesForm(forms.ModelForm):
             'gender': forms.Form(forms.ChoiceField(choices=GENDER_CHOICES)),
             'condition': forms.Form(forms.ChoiceField(choices=CONDITION_CHOICES)),
             'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'address': forms.TextInput(attrs={'class': 'form-control'}),
             'city': forms.TextInput(attrs={'class': 'form-control'}),
             'state': forms.TextInput(attrs={'class': 'form-control'}),
             'contactno': forms.TextInput(attrs={'class': 'form-control'}),

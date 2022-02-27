@@ -72,18 +72,18 @@ def getLongLat(address: str) -> (int, int):
 
 def clothesPostRequest(request):
     if request.method == "POST":
-        print(request.POST)
-        description = request.POST['description']
-        size = request.POST['size']
-        gender = request.POST['gender']
-        condition = request.POST['condition']
-        contactno = request.POST['contactno']
-        address = request.POST['address']
-        city = request.POST['city']
-        state = request.POST['state']
-        pickupDate = request.POST['pickupdate']
-        form = ClothesForm(request.POST, request.FILES)
-        if form.is_valid():
+        try:
+            print(request.POST)
+            description = request.POST['description']
+            size = request.POST['size']
+            gender = request.POST['gender']
+            condition = request.POST['condition']
+            contactno = request.POST['contactno']
+            address = request.POST['address']
+            city = request.POST['city']
+            state = request.POST['state']
+            pickupDate = request.POST['pickupdate']
+
             if pickupDate and datetime.strptime(pickupDate, "%Y-%m-%d") > datetime.now():
                 if size and gender and city and state and address and contactno and condition:
                     combinedAddress = address + "," + city + "," + state
@@ -112,6 +112,8 @@ def clothesPostRequest(request):
                     messages.error(request, "Clothes Post failed! Please enter all details.")
             else:
                 messages.error(request, "Clothes Post failed! Please select a future expiry date")
+        except:
+            return redirect('home_div')
     return render(request, 'clothPost.html', {"form": ClothesForm})
 
 
