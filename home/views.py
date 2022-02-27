@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-import os 
+
+from giveaway.models import Food 
 
 
 
@@ -17,6 +18,8 @@ def pickUp(request):
     return render(request, 'pickup.html')
 
 def food(request):
+    l = Food.objects.get(id=2)
+    print(l)
     return render(request, 'food.html')
 
 def populate(request):
