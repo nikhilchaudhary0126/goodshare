@@ -49,7 +49,7 @@ We can integrate our application with Facebook Marketplace and Craigslist to hav
 ## Running Instructions
 
 ### Requirements
-Python3 with django and requests module.
+Python3 with ```django``` and ```requests``` module.
 
 ### Running instructions 
 * To run clone repository using
