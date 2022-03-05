@@ -4,6 +4,10 @@ __pycache__/
 *$py.class
 .idea/
 
+# static deployment files
+app.yaml
+static/
+
 .DS_Store
 # C extensions
 *.so
